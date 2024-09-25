@@ -18,3 +18,15 @@ int main()
     closedir(d);
     return 0;
 }
+
+
+
+/tmp/q7orDbJtKq.o
+.
+..
+.bash_logout
+.bashrc
+.profile
+
+
+=== Code Execution Successful ===
