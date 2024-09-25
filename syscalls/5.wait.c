@@ -1,27 +1,25 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <unistd.h>
-int main() 
-{
+#include <sys/wait.h>
+int main() {
     int pid, i = 0;
-    printf("ready to fork\n");
-    pid = fork();
-    if (pid == -1) 
-    {
-        perror("fork failed");
-        return 1;
-    } 
-    else if (pid == 0) 
-    {
-        printf("child starts\n");
-        for (i = 0; i < 10; i++) 
-        {
-            printf("child ends\n");
+    printf("Ready to fork\n");
+    pid = fork(); 
+    if (pid == 0) {
+        printf("Child process starts\n");
+        for (i = 0; i < 10; i++) {
+            printf("Child process running %d\n", i);
+            sleep(1);
         }
-    } 
-    else 
-    {
-        printf("parent process continues\n");
+        printf("Child process ends\n");
+    } else {
+        wait(NULL); 
+        for (i = 0; i < 10; i++) {
+            printf("Parent process running %d\n", i);
+            sleep(1);
+        }
+        printf("Parent process ends\n");
     }
     return 0;
 }
