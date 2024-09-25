@@ -23,3 +23,32 @@ int main() {
     }
     return 0;
 }
+
+
+
+
+O/P:
+Ready to fork
+Child process starts
+Child process running 0
+Child process running 1
+Child process running 2
+Child process running 3
+Child process running 4
+Child process running 5
+Child process running 6
+Child process running 7
+Child process running 8
+Child process running 9
+Child process ends
+Parent process running 0
+Parent process running 1
+Parent process running 2
+Parent process running 3
+Parent process running 4
+Parent process running 5
+Parent process running 6
+Parent process running 7
+Parent process running 8
+Parent process running 9
+Parent process ends
