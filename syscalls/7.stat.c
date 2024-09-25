@@ -3,25 +3,13 @@
 
 int main(int argc, char *argv[]) {
     struct stat fileStat;
+    if (argc != 2 || stat(argv[1], &fileStat) < 0) return 1;
 
-    if (argc < 2) {
-        printf("Usage: %s <filename>\n", argv[0]);
-        return 1;
-    }
-
-    // Get file information using stat()
-    if (stat(argv[1], &fileStat) < 0) {
-        perror("stat");
-        return 1;
-    }
-
-    // Display basic file information
-    printf("File Size: \t\t%ld bytes\n", fileStat.st_size);
-    printf("Number of Links: \t%ld\n", fileStat.st_nlink);
-    printf("File inode: \t\t%ld\n", fileStat.st_ino);
-
+    printf("File: %s\nSize: %ld bytes\nPermissions: %o\n", argv[1], fileStat.st_size, fileStat.st_mode & 0777);
     return 0;
 }
+O/P:
+=== Code Execution Successful ===
 
 
 //origiml
