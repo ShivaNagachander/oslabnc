@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+    int p[20], bt[20], wt[20], tat[20], i, k, n, temp;
+    float wtavg, tatavg;
+
+    // Prompt the user to enter the number of processes
+    printf("\nEnter the number of processes -- ");
+    scanf("%d", &n);
+
+    // Input burst time for each process
+    for (i = 0; i < n; i++) {
+        p[i] = i; // Assign process index
+        printf("Enter Burst Time for Process %d -- ", i);
+        scanf("%d", &bt[i]); // Read burst time for process i
+    }
+
+    // Sort processes based on burst time using Bubble Sort
+    for (i = 0; i < n; i++)
+        for (k = i + 1; k < n; k++)
+            if (bt[i] > bt[k]) { // If burst time of i is greater than k
+                // Swap burst times
+                temp = bt[i];
+                bt[i] = bt[k];
+                bt[k] = temp;
+
+                // Swap process IDs to maintain the correct association
+                temp = p[i];
+                p[i] = p[k];
+                p[k] = temp;
+            }
+
+    // Initialize the first process waiting time and turnaround time
+    wt[0] = wtavg = 0; // First process waiting time is 0
+    tat[0] = tatavg = bt[0]; // Turnaround time for the first process is its burst time
+
+    // Calculate waiting time and turnaround time for each process
+    for (i = 1; i < n; i++) {
+        wt[i] = wt[i - 1] + bt[i - 1]; // Waiting time is previous waiting time + previous burst time
+        tat[i] = tat[i - 1] + bt[i]; // Turnaround time is previous turnaround time + current burst time
+        wtavg = wtavg + wt[i]; // Accumulate waiting time for average calculation
+        tatavg = tatavg + tat[i]; // Accumulate turnaround time for average calculation
+    }
+
+    // Print the header for the process table
+    printf("\n\t PROCESS \tBURST TIME \t WAITING TIME\t TURNAROUND TIME\n");
+
+    // Print process details
+    for (i = 0; i < n; i++)
+        printf("\n\t P%d \t\t %d \t\t %d \t\t %d", p[i], bt[i], wt[i], tat[i]);
+
+    // Calculate and print average waiting time and turnaround time
+    printf("\nAverage Waiting Time -- %f", wtavg / n); // Average waiting time
+    printf("\nAverage Turnaround Time -- %f", tatavg / n); // Average turnaround time
+
+    return 0; // Exit the program
+}
