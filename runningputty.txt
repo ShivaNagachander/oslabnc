@@ -1,0 +1,15 @@
+Steps to Execute C Program in PuTTY
+1. Open PuTTY and enter the following details:
+	- IP: 10.0.30.251
+	- Username: 22eg105a63
+	- Password: 123456
+2. Once logged in, enter the following command to open a new file in the Vi editor:
+	vi filename.c
+3. Press 'i' to switch to input mode and write your C program.
+4. After writing your code, press 'ESC' to exit the input mode.
+5. Save and exit the file by typing:
+	:wq
+6. Now, compile your program using GCC by typing:
+	gcc filename.c
+7. If there are no errors, execute the program by typing:
+	./a.out
